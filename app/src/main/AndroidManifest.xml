@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:requestLegacyExternalStorage="true"
+        android:usesCleartextTraffic="true"
+        android:theme="@style/Theme.EPrestasi"
+        tools:targetApi="31">
+
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".RegisterActivity"/>
+        <activity android:name=".LoginActivity"/>
+        <activity android:name=".MainActivity"/>
+        <activity android:name=".ResetPassActivity"/>
+
+
+        <activity android:name=".pengajar.ActivityProfile"/>
+        <activity android:name=".pengajar.ActivityTambahSantri"/>
+        <activity android:name=".pengajar.ActivityTambahBuku"/>
+        <activity android:name=".pengajar.ActivityLihatBuku"/>
+        <activity android:name=".pengajar.ActivityTambahHafalan"/>
+
+        <activity android:name=".MainActivityWali"/>
+        <activity android:name=".wali.ActivityProfileWali"/>
+        <activity android:name=".wali.ActivityHistoryIzin"/>
+        <activity android:name=".wali.HistorySppActivity"/>
+        <activity android:name=".wali.ActivityPresensi"/>
+        <activity android:name=".wali.ActivityDataSpp"/>
+
+        <activity android:name=".admin.ActivityKelas"/>
+    </application>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+</manifest>

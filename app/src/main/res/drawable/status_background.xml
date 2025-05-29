@@ -1,0 +1,10 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Status 'Disetujui' (selected) background color -->
+    <item android:state_selected="true" android:drawable="@color/status_approved" />
+
+    <!-- Status 'Pending' background color -->
+    <item android:state_selected="false" android:drawable="@color/status_pending" />
+
+    <!-- Default background (optional) -->
+    <item android:drawable="@android:color/darker_gray" />
+</selector>

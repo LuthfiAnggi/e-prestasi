@@ -1,0 +1,96 @@
+<resources>
+    <string name="app_name">E-Prestasi</string>
+
+        <string-array name="jilid_options">
+            <item>Jilid 1</item>
+            <item>Jilid 2</item>
+            <item>Jilid 3</item>
+            <item>Jilid 4</item>
+            <item>Jilid 5</item>
+            <item>Jilid 6</item>
+        </string-array>
+
+        <string-array name="nilai_options">
+            <item>A</item>
+            <item>B</item>
+            <item>C</item>
+            <item>D</item>
+            <item>E</item>
+        </string-array>
+
+        <string-array name="surah_pendek">
+            <item>An-Naba</item>
+            <item>An-Naziat</item>
+            <item>Abasa</item>
+            <item>At-Takwir</item>
+            <item>Al-Infitar</item>
+            <item>Al-Mutaffifin</item>
+            <item>Al-Inshiqaq</item>
+            <item>Al-Buruj</item>
+            <item>At-Tariq</item>
+            <item>Al-Ala</item>
+            <item>Al-Ghashiyah</item>
+            <item>Al-Fajr</item>
+            <item>Al-Balad</item>
+            <item>Ash-Shams</item>
+            <item>Al-Lail</item>
+            <item>Ad-Duhaa</item>
+            <item>As-Sharh</item>
+            <item>At-Tin</item>
+            <item>Al-Alaq</item>
+            <item>Al-Qadr</item>
+            <item>Al-Bayyina</item>
+            <item>Az-Zalzalah</item>
+            <item>Al-Adiyat</item>
+            <item>Al-Qariah</item>
+            <item>At-Takathur</item>
+            <item>Al-Asr</item>
+            <item>Al-Humazah</item>
+            <item>Al-Fil</item>
+            <item>Quraysh</item>
+            <item>Al-Maun</item>
+            <item>Al-Kawthar</item>
+            <item>Al-Kafirun</item>
+            <item>An-Nasr</item>
+            <item>Al-Masad</item>
+            <item>Al-Ikhlas</item>
+            <item>Al-Falaq</item>
+            <item>An-Nas</item>
+        </string-array>
+
+
+        <string-array name="doa_harian">
+            <item>Doa Sebelum Tidur</item>
+            <item>Doa Bangun Tidur</item>
+            <item>Doa Masuk Kamar Mandi</item>
+            <item>Doa Keluar Kamar Mandi</item>
+            <item>Doa Sebelum Makan</item>
+            <item>Doa Sesudah Makan</item>
+            <item>Doa Masuk Rumah</item>
+            <item>Doa Keluar Rumah</item>
+            <item>Doa Naik Kendaraan</item>
+
+        </string-array>
+
+        <string-array name="status_filter">
+            <item>Semua</item>
+            <item>Disetujui</item>
+            <item>Pending</item>
+        </string-array>
+
+    <string-array name="bulan_array">
+        <item>Januari</item>
+        <item>Februari</item>
+        <item>Maret</item>
+        <item>April</item>
+        <item>Mei</item>
+        <item>Juni</item>
+        <item>Juli</item>
+        <item>Agustus</item>
+        <item>September</item>
+        <item>Oktober</item>
+        <item>November</item>
+        <item>Desember</item>
+    </string-array>
+
+</resources>

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FCFCFC"
+    android:padding="16dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/textViewTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Tambah Santri"
+            android:textColor="#24685B"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardInput"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewTitle">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp">
+
+                <!-- EditText untuk Nama Santri -->
+                <EditText
+                    android:id="@+id/etNamaSantri"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Nama Santri"
+                    android:inputType="textPersonName"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!-- EditText untuk Tanggal Lahir -->
+                <EditText
+                    android:id="@+id/etTanggalLahirSantri"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:hint="Tanggal Lahir"
+                    android:inputType="none"
+                    android:focusable="false"
+                    android:clickable="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/etNamaSantri" />
+
+                <!-- Spinner untuk Kelas -->
+                <Spinner
+                    android:id="@+id/spinnerKelasSantri"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/etTanggalLahirSantri" />
+
+                <!-- EditText untuk Alamat Santri -->
+                <EditText
+                    android:id="@+id/etAlamatSantri"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:hint="Alamat"
+                    android:inputType="textMultiLine"
+                    android:lines="3"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/spinnerKelasSantri" />
+
+                <!-- Spinner untuk wali -->
+                <Spinner
+                    android:id="@+id/spinnerWali"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/etAlamatSantri" />
+
+                <!-- ImageView untuk Foto -->
+                <ImageView
+                    android:id="@+id/ivGambar"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:background="@android:drawable/ic_menu_gallery"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/spinnerWali" />
+
+                <!-- Button Pilih Gambar -->
+                <Button
+                    android:id="@+id/btnPilihGambar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:backgroundTint="#24685B"
+                    android:text="Pilih Gambar"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/ivGambar" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Button Simpan -->
+        <Button
+            android:id="@+id/btnSimpan"
+            android:layout_width="204dp"
+            android:layout_height="47dp"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="#24685B"
+            android:text="Simpan"
+            app:layout_constraintEnd_toEndOf="@id/cardInput"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="@id/cardInput"
+            app:layout_constraintTop_toBottomOf="@id/cardInput" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

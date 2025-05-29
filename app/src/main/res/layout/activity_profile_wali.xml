@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FCFCFC"
+    android:padding="16dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- TextView di atas CardView -->
+        <Button
+            android:id="@+id/btnSimpan"
+            android:layout_width="204dp"
+            android:layout_height="47dp"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="#24685B"
+            android:text="Simpan"
+            app:layout_constraintEnd_toEndOf="@+id/cardInput"
+            app:layout_constraintStart_toStartOf="@+id/cardInput"
+            app:layout_constraintTop_toBottomOf="@+id/cardInput" />
+
+        <TextView
+            android:id="@+id/textViewTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Profile"
+            android:textColor="#EDEDED"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- CardView yang membungkus semua EditText dan Spinner -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardInput"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewTitle">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp">
+
+                <!-- EditText untuk Nama -->
+                <EditText
+                    android:id="@+id/etNamaProfile"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Nama"
+                    android:inputType="textPersonName"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/etTanggalLahir"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:hint="Tanggal Lahir"
+                    android:inputType="none"
+                    android:focusable="false"
+                    android:clickable="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/etNamaProfile" />
+
+                <!-- Spinner untuk Jenis Kelamin -->
+
+                <!-- EditText untuk No. HP -->
+                <EditText
+                    android:id="@+id/etNoHp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="No. HP"
+                    android:inputType="phone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/etTanggalLahir" />
+
+                <!-- EditText untuk Alamat -->
+                <EditText
+                    android:id="@+id/etAlamat"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:hint="Alamat"
+                    android:inputType="textMultiLine"
+                    android:lines="3"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/etNoHp" />
+
+                <ImageView
+                    android:id="@+id/ivGambar"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:background="@android:drawable/ic_menu_gallery"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintEnd_toEndOf="@+id/etAlamat"
+                    app:layout_constraintStart_toStartOf="@+id/etAlamat"
+                    app:layout_constraintTop_toBottomOf="@+id/etAlamat" />
+
+                <Button
+                    android:id="@+id/btnPilihGambar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#24685B"
+                    android:text="Pilih Gambar"
+                    app:layout_constraintEnd_toEndOf="@+id/etAlamat"
+                    app:layout_constraintStart_toStartOf="@+id/etAlamat"
+                    app:layout_constraintTop_toBottomOf="@+id/ivGambar" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <FrameLayout
+            android:id="@+id/frameLayout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardInput">
+        </FrameLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

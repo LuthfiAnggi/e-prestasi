@@ -1,0 +1,15 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_kelola_progress"
+        android:icon="@drawable/circle_background"
+        android:title="Progress" />
+    <item
+        android:id="@+id/menu_kelola_izin"
+        android:icon="@drawable/circle_background"
+        android:title="Kehadiran" />
+    <item
+        android:id="@+id/menu_kelola_spp"
+        android:icon="@drawable/circle_background"
+        android:title="SPP" />
+
+</menu>

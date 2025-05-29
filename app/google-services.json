@@ -1,0 +1,29 @@
+  {
+  "project_info": {
+    "project_number": "970129972198",
+    "project_id": "project-akhir-bf204",
+    "storage_bucket": "project-akhir-bf204.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:970129972198:android:1e5612494c3ef4b7ced427",
+        "android_client_info": {
+          "package_name": "luthfi.anggi.e_prestasi"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCPErT0be6-ZxCT0n_Lc2ymK36EUChm1nI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

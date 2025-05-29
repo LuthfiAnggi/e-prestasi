@@ -1,0 +1,6 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle"
+    android:id="@+id/bg_status_chip">
+    <corners android:radius="50dp" />
+    <solid android:color="#4CAF50" />
+</shape>

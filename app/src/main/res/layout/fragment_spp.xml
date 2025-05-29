@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Header Section -->
+    <TextView
+        android:id="@+id/title_spp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tagihan SPP"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:paddingBottom="8dp" />
+
+    <!-- Status Pembayaran -->
+    <TextView
+        android:id="@+id/status_pembayaran"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Status: Belum Dibayar"
+        android:textColor="#FF0000"
+        android:textSize="16sp"
+        android:paddingBottom="16dp" />
+
+    <!-- Bagian Tagihan -->
+    <TextView
+        android:id="@+id/nama_siswa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nama Siswa: John Doe"
+        android:textSize="16sp"
+        android:paddingTop="8dp" />
+
+    <TextView
+        android:id="@+id/keterangan_kelas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Kelas: 10A"
+        android:textSize="14sp"
+        android:paddingTop="4dp" />
+
+    <TextView
+        android:id="@+id/bulan_tagihan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bulan: April 2025"
+        android:textSize="14sp"
+        android:paddingTop="4dp" />
+
+    <!-- Jumlah Tagihan -->
+    <TextView
+        android:id="@+id/jumlah_tagihan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rp 50.000"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:paddingTop="16dp" />
+
+    <!-- Button Pembayaran -->
+    <Button
+        android:id="@+id/button_bayar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Bayar Sekarang"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#4CAF50"
+        android:layout_marginTop="32dp" />
+
+    <!-- History Pembayaran (Optional) -->
+    <TextView
+        android:id="@+id/history_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="History Pembayaran"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:paddingTop="32dp"
+        android:paddingBottom="8dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/history_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp" />
+
+    <!-- Footer: Catatan Pembayaran -->
+    <TextView
+        android:id="@+id/footer_note"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Untuk pembayaran lebih lanjut, hubungi admin."
+        android:textSize="12sp"
+        android:textColor="#888888"
+        android:paddingTop="32dp"
+        android:gravity="center"
+        android:paddingBottom="8dp"/>
+
+</LinearLayout>

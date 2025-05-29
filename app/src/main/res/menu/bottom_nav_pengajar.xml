@@ -1,0 +1,15 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_kelola_santri"
+        android:icon="@drawable/circle_background"
+        android:title="Santri" />
+    <item
+        android:id="@+id/menu_kelola_buku"
+        android:icon="@drawable/circle_background"
+        android:title="Buku" />
+    <item
+        android:id="@+id/menu_kelola_izin"
+        android:icon="@drawable/circle_background"
+        android:title="Perizinan" />
+
+</menu>
