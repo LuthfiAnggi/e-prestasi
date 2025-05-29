@@ -216,37 +216,28 @@ class FragmentPayment : Fragment(), TransactionFinishedCallback {
                 var totalAmount = amount
                 val monthsToPay = mutableListOf(paymentField) // Bulan yang akan dibayar
 
-                // Dapatkan bulan pertama santri (dari created_at)
-                val (startMonth, startYear) = getFirstPaymentMonth(santri.createdAt)
-x
-                // Hitung bulan-bulan yang belum dibayar mulai dari bulan pertama
-                for (year in startYear..currentYear) {
-                    val startM = if (year == startYear) startMonth else 1
-                    val endM = if (year == currentYear) currentMonth - 1 else 12
+                // Hitung bulan sebelumnya yang belum dibayar
+                for (month in 1 until currentMonth) {
+                    val prevMonth = String.format("%02d", month)
+                    val prevPaymentField = "${prevMonth}_$currentYear"
 
-                    for (month in startM..endM) {
-                        val monthStr = String.format("%02d", month)
-                        val paymentFieldToCheck = "${monthStr}_$year"
-
-                        // Cek apakah bulan ini sudah dibayar
-                        var isPaid = false
-                        for (document in querySnapshot) {
-                            if (document.id == paymentFieldToCheck) {
-                                val status = document.getString("status") ?: ""
-                                if (status != "success" && status != "settlement") {
-                                    totalAmount += amount
-                                    monthsToPay.add(paymentFieldToCheck)
-                                }
-                                isPaid = true
-                                break
+                    var prevMonthPaid = false
+                    for (document in querySnapshot) {
+                        if (document.id == prevPaymentField) {
+                            val status = document.getString("status") ?: ""
+                            if (status == "unpaid" || status.isEmpty()) {
+                                totalAmount += amount
+                                monthsToPay.add(prevPaymentField)
                             }
+                            prevMonthPaid = true
+                            break
                         }
+                    }
 
-                        // Jika tidak ada data pembayaran sama sekali
-                        if (!isPaid) {
-                            totalAmount += amount
-                            monthsToPay.add(paymentFieldToCheck)
-                        }
+                    // Jika bulan sebelumnya tidak ada datanya sama sekali
+                    if (!prevMonthPaid) {
+                        totalAmount += amount
+                        monthsToPay.add(prevPaymentField)
                     }
                 }
 
@@ -302,7 +293,7 @@ x
     }
 
     override fun onTransactionFinished(result: TransactionResult) {
-        if (result.response != null && selectedSantri != null && accumulatedPayments.isNotEmpty()) {
+        if (result.response != null && selectedSantri != null) {
             val transactionStatus = result.response.transactionStatus
             val orderId = result.response.transactionId
             val paymentChannel = result.response.paymentType
@@ -336,7 +327,7 @@ x
                     }
                     "pending" -> {
                         pembayaranRef.set(paymentData)
-                        // Tidak perlu panggil checkMidtransStatus di sini
+                        checkMidtransStatus(orderId, formattedDate, paymentChannel)
                     }
                     "expired", "failed" -> {
                         pembayaranRef.set(paymentData)
@@ -344,14 +335,12 @@ x
                 }
             }
 
-            // Untuk status pending, panggil pengecekan status setelah loop
-            if (transactionStatus == "pending") {
-                checkMidtransStatus(orderId, formattedDate, paymentChannel)
-            } else if (transactionStatus == "success" || transactionStatus == "settlement") {
+            if (transactionStatus == "success" || transactionStatus == "settlement") {
                 Toast.makeText(requireContext(), "Pembayaran berhasil", Toast.LENGTH_SHORT).show()
             }
         }
     }
+
 
     fun checkMidtransStatus(
         orderId: String,
@@ -416,57 +405,47 @@ x
                         try {
                             val json = JSONObject(responseBody)
                             val status = json.getString("transaction_status")
+                            val paymentType = json.getString("payment_type")
 
-                            // Update semua bulan yang diakumulasikan
-                            for (paymentField in accumulatedPayments) {
-                                val pembayaranRef = firestore
-                                    .collection("pembayaran")
-                                    .document(uidWali)
-                                    .collection(santri.uid)
-                                    .document(paymentField)
-
-                                val historyRef = firestore
-                                    .collection("pembayaran")
-                                    .document(uidWali)
-                                    .collection("all_payments")
-                                    .document("$orderId-$paymentField") // Gunakan ID unik
-
-                                val paymentData = hashMapOf(
-                                    "order_id" to orderId,
-                                    "date" to formattedDate,
-                                    "amount" to 30000.0,
-                                    "status" to status,
-                                    "payment_channel" to paymentChannel,
-                                    "santri_name" to santri.nama,
-                                    "santri_id" to santri.uid,
-                                    "bulan_tahun" to paymentField
-                                )
-
-                                pembayaranRef.set(paymentData)
-                                historyRef.set(paymentData)
+                            // Update payment data with latest status
+                            paymentData["status"] = when (status) {
+                                "settlement" -> "success"
+                                else -> status
                             }
+                            paymentData["payment_channel"] = paymentType
 
-                            when (status) {
-                                "settlement" -> {
-                                    Toast.makeText(
-                                        requireContext(),
-                                        "Pembayaran berhasil diselesaikan",
-                                        Toast.LENGTH_SHORT
-                                    ).show()
-                                }
-                                "pending" -> {
-                                    Toast.makeText(
-                                        requireContext(),
-                                        "Pembayaran masih dalam proses",
-                                        Toast.LENGTH_SHORT
-                                    ).show()
-                                }
-                                else -> {
-                                    Toast.makeText(
-                                        requireContext(),
-                                        "Status pembayaran: ${status.capitalize()}",
-                                        Toast.LENGTH_SHORT
-                                    ).show()
+                            // Use batch write for atomic operation
+                            val batch = firestore.batch()
+                            batch.set(pembayaranRef, paymentData)
+                            batch.set(historyRef, paymentData)
+
+                            batch.commit().addOnCompleteListener { task ->
+                                if (task.isSuccessful) {
+                                    when (status) {
+                                        "settlement" -> {
+                                            Toast.makeText(
+                                                requireContext(),
+                                                "Pembayaran berhasil diselesaikan",
+                                                Toast.LENGTH_SHORT
+                                            ).show()
+                                        }
+                                        "pending" -> {
+                                            Toast.makeText(
+                                                requireContext(),
+                                                "Pembayaran masih dalam proses",
+                                                Toast.LENGTH_SHORT
+                                            ).show()
+                                        }
+                                        else -> {
+                                            Toast.makeText(
+                                                requireContext(),
+                                                "Status pembayaran: ${status.capitalize()}",
+                                                Toast.LENGTH_SHORT
+                                            ).show()
+                                        }
+                                    }
+                                } else {
+                                    Log.e("Firestore", "Gagal menyimpan data", task.exception)
                                 }
                             }
 
@@ -474,6 +453,8 @@ x
                             Log.e("Midtrans", "Error parsing response", e)
                         }
                     }
+                } else {
+                    Log.e("Midtrans", "Error response: ${response.errorBody()?.string()}")
                 }
             }
 
@@ -486,27 +467,6 @@ x
                 ).show()
             }
         })
-    }
-
-    private fun getFirstPaymentMonth(createdAt: String): Pair<Int, Int> {
-        return try {
-            // Format tanggal: "2025-03-15 10:30:00" (contoh)
-            val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
-            val date = sdf.parse(createdAt)
-
-            val cal = Calendar.getInstance()
-            cal.time = date
-
-            // Ambil bulan dan tahun
-            val month = cal.get(Calendar.MONTH) + 1 // +1 karena bulan dimulai dari 0
-            val year = cal.get(Calendar.YEAR)
-
-            Pair(month, year)
-        } catch (e: Exception) {
-            Log.e("Payment", "Error parsing createdAt: $createdAt", e)
-            // Default ke bulan dan tahun sekarang jika error
-            Pair(getCurrentMonth(), getCurrentYear())
-        }
     }
 
     private fun getMonthListFromPaymentFields(): List<String> {

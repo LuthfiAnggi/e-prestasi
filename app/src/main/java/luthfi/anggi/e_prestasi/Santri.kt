@@ -10,5 +10,5 @@ data class Santri(
     val waliId: String = "",
     val wali_nama: String = "",
     val wali_email: String = "",
-    val createdAt: String = "",
+    val created_at: String = "",
 )
